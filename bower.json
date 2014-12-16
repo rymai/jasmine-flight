@@ -1,6 +1,6 @@
 {
-  "name": "jasmine-flight",
-  "version": "4.0.0",
+  "name": "webpack-jasmine-flight",
+  "version": "5.0.0",
   "description": "Extensions to the Jasmine test framework for use with Flight",
   "main": "lib/jasmine-flight.js",
   "devDependencies": {
@@ -10,7 +10,8 @@
   "keywords": [
     "flight",
     "jasmine",
-    "test"
+    "test",
+    "webpack"
   ],
   "ignore": [
     ".*",
