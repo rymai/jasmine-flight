@@ -1,6 +1,6 @@
 {
-  "name": "jasmine-flight",
-  "version": "4.0.0",
+  "name": "webpack-jasmine-flight",
+  "version": "5.0.0",
   "main": "lib/jasmine-flight.js",
   "files": [
     "lib/jasmine-flight.js"
@@ -24,6 +24,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/flightjs/jasmine-flight.git"
+    "url": "git://github.com/andrewk/webpack-jasmine-flight.git"
   }
 }
