@@ -1,31 +1,17 @@
-# jasmine-flight [![Build Status](https://travis-ci.org/flightjs/jasmine-flight.png?branch=master)](http://travis-ci.org/flightjs/jasmine-flight)
+# webpack-jasmine-flight
+__Forked from Twitter's jasmine-flight, and modified to use with webpack instead of requirejs__
 
 Extensions to the Jasmine test framework for use with [Flight](https://github.com/flightjs/flight)
 
 # Getting started
 
-Include [jasmine-flight.js](https://raw.github.com/andrewk/webpack-jasmine-flight/master/lib/jasmine-flight.js)
-in your app and load it in your test runner.
-
-Or install it with [Bower](http://bower.io/):
+Install it with [Bower](http://bower.io/):
 
 ```bash
-# TODO- register with bower
-# bower install --save-dev webpack-jasmine-flight
+# bower install --save-dev andrewk/webpack-jasmine-flight
 ```
 
 jasmine-flight depends on [jasmine](https://github.com/pivotal/jasmine)
-
-jasmine-flight assumes you'll be using RequireJS to load Flight modules, and
-that you've configured the Flight directory path. For example:
-
-```javascript
-requirejs.config({
-  paths: {
-    flight: 'bower_components/flight'
-  }
-});
-```
 
 # What is jasmine-flight?
 
@@ -35,16 +21,12 @@ jasmine-flight provides a set of helpers to load and instantiate AMD components,
 
 ### describeComponent(componentReference, specDefinitions)
 
-Requires the component at componentReference and executes specDefinitions.
+Instantiates the component at componentReference and executes specDefinitions.
 
 * The component constructor is available from within specDefinitions as `this.Component`
 * To create a component instance, call `this.setupComponent`
 
-#### `componentReference`: mixed
-
-A path to an AMD component if using RequireJS E.g. `ui/compose`.
-
-If using webpack, it is expected to be the resulting object of requiring the component, E.g.
+#### `componentReference`: Function
 
 ```javascript
 describeComponent(require('ui/compose'), specDefinitions);
@@ -55,13 +37,9 @@ describeComponent(require('ui/compose'), specDefinitions);
 A function to execute after the component has loaded. Should contain spec definitions.
 
 
-
-
 ### ddescribeComponent(componentReference, specDefinitions)
 
 As per describeComponent, but prevents execution of any other specs.
-
-
 
 
 ### describeMixin(mixinReference, specDefinitions)
@@ -73,23 +51,18 @@ Requires the mixin at mixinReference and executes specDefinitions.
 * To create a component instance, call `this.setupComponent`
 
 
-#### `mixinReference`: mixed
+#### `mixinReference`: Function
 
-RequireJS usage: A path to an AMD mixin. E.g. `ui/with_close_button`
-Webpack usage: Result of requiring mixin. E.g. `require('ui/with_close_button')`
+Result of requiring mixin. E.g. `require('ui/with_close_button')`
 
 #### `specDefinitions`: Function
 
 A function to execute after the mixin has loaded. Should contain spec definitions.
 
 
-
-
 ### ddescribeMixin(mixinReference, specDefinitions)
 
 As per describeMixin, but prevents execution of any other specs.
-
-
 
 
 ### describeModule(moduleReference, specDefinitions)
@@ -100,8 +73,7 @@ Requires the AMD module at moduleReference and executes specDefinitions
 
 #### `moduleReference`: mixed
 
-RequireJS usage: A path to an AMD module. E.g. `utils/time`
-Webpack usage: Result of requiring a module. E.g. `require('utils/time')`
+Result of requiring a module. E.g. `require('utils/time')`
 
 #### `specDefinitions`: Function
 
@@ -110,8 +82,6 @@ A function to execute after the module has loaded. Should contain spec definitio
 ### ddescribeModule(moduleReference, specDefinitions)
 
 As per describeModule, but prevents execution of any other specs.
-
-
 
 
 ## this.setupComponent(fixture, options)
@@ -204,11 +174,11 @@ Event Spies are not part of this package but are mentioned here because it's mos
 ```javascript
 describeComponent('ui/text', function () {
   it('triggers 'data-username' after initialize', function () {
-    var spyEvent = spyOnEvent(document, 'data-username');
+    spyOnEvent(document, 'data-username');
     this.setupComponent({
       username: 'bob'
     });
-    expect(spyEvent).toHaveBeenTriggeredOnAndWith(document {
+    expect('data-username').toHaveBeenTriggeredOnAndWith(document {
       username: 'bob'
     });
   });
