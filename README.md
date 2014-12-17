@@ -8,7 +8,7 @@ Extensions to the Jasmine test framework for use with [Flight](https://github.co
 Install it with [Bower](http://bower.io/):
 
 ```bash
-# bower install --save-dev andrewk/webpack-jasmine-flight
+bower install --save-dev andrewk/webpack-jasmine-flight
 ```
 
 jasmine-flight depends on [jasmine](https://github.com/pivotal/jasmine)
